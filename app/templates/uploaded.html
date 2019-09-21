@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+					<!-- {{ predictions }}
+ -->
+					<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+  
+<h2>Resultado</h2>
+
+
+<table>
+  <tr>
+    <th>CLINICAL DEMENTIA RATING</th>
+    <th>Puntaje</th>
+  </tr>
+  <tr>
+  	{% for i in range(0,tam) %}
+    <td>CDR {{i}}</td>
+    <td>{{ prediccion[i]}}</td>
+  </tr>	
+  {% endfor %}
+</table>
+
+
+    <title>Index</title>
+
+<div>
+</br>
+    <center>
+
+<iframe src="https://knightadrc.wustl.edu/cdr/PDFs/CDR_Table.pdf" style="width:800px; height:600px;" frameborder="0"></iframe>
+</center>
+ </div>
+
+
+
+</body>
+</html>
+
+
+{% endblock %}

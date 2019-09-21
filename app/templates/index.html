@@ -1,0 +1,292 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+	<!DOCTYPE html>
+<html>
+<body>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+  <link href="https://rawgithub.com/hayageek/jquery-upload-file/master/css/uploadfile.css" rel="stylesheet">
+ 
+  <script src="https://rawgithub.com/hayageek/jquery-upload-file/master/js/jquery.uploadfile.min.js"></script>
+
+    <div class="col-md-12">
+      <div class="panel with-nav-tabs panel-primary">
+      
+        <div class="panel-heading">
+          <ul class="nav nav-tabs">
+      
+            <li><a href="#Tabs-Ketiga" data-toggle="tab"><i class="fa fa-headphones" aria-hidden="true"></i> CDR</a></li>
+            <li class="active"><a href="#Tabs-Keempat" data-toggle="tab"><i class="fa fa-file-text" aria-hidden="true"></i> Demencia</a></li>
+          </ul>
+        </div>
+
+        <div class="panel-body">
+          <div class="tab-content">
+            <div class="tab-pane fade" id="Tabs-Kesatu">
+              <div>
+                Tabs Percobaan
+              </div> 
+            </div>
+
+            <div class="tab-pane fade" id="Tabs-Kedua">
+              <div id="mulitplefileuploader">Upload</div>
+              <div id="status"></div>
+              <div id="startbutton" class="ajax-file-upload-green">Start Upload</div>
+              <div class="col-md-12">
+                <button type="button" class="btn btn-labeled btn-success pull-right">
+                  <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Save
+                </button>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="Tabs-Ketiga">
+
+<form class="form-horizontal" action="/data_cdr" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<legend></legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="slots">Sexo</label>
+  <div class="col-md-5">
+    <select id="sexo" name="sexo" class="form-control">
+      <option value="1">Maculino</option>
+      <option value="2">Femenino</option>
+    </select>
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="apellido">Edad</label>  
+  <div class="col-md-5">
+  <input id="Edad" name="Edad" type="numeric" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">EDUC</label>  
+  <div class="col-md-5">
+  <input id="EDUC" name="EDUC" type="text" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">SES</label>  
+  <div class="col-md-5">
+  <input id="SES" name="SES" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">MMSE</label>  
+  <div class="col-md-5">
+  <input id="MMSE" name="MMSE" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">eTIV</label>  
+  <div class="col-md-5">
+  <input id="eTIV" name="eTIV" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">nWBV</label>  
+  <div class="col-md-5">
+  <input id="nWBV" name="nWBV" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">ASF</label>  
+  <div class="col-md-5">
+  <input id="ASF" name="ASF" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="enviar"></label>
+  <div class="col-md-4">
+    <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+<!-- Form Name CDR -->
+
+              <div class="col-md-12">
+                <!-- untuk backend actionnya ditunjukan ke mana -->
+                <form action="/uploaded_cdr" method="post" enctype="multipart/form-data">
+                  <div class="form-group files">
+                    <label>Upload Your File </label>
+                    <input type="file" name="file_cdr" id="file_cdr">
+                  </div>
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-labeled btn-success pull-right">
+                      <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Enviar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="tab-pane fade in active" id="Tabs-Keempat">
+            	<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend></legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="slots">Sexo</label>
+  <div class="col-md-5">
+    <select id="sexo" name="sexo" class="form-control">
+      <option value="1">Maculino</option>
+      <option value="2">Femenino</option>
+    </select>
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="apellido">Edad</label>  
+  <div class="col-md-5">
+  <input id="Edad" name="Edad" type="numeric" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">EDUC</label>  
+  <div class="col-md-5">
+  <input id="EDUC" name="EDUC" type="text" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">SES</label>  
+  <div class="col-md-5">
+  <input id="SES" name="SES" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">MMSE</label>  
+  <div class="col-md-5">
+  <input id="MMSE" name="MMSE" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">eTIV</label>  
+  <div class="col-md-5">
+  <input id="eTIV" name="eTIV" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">nWBV</label>  
+  <div class="col-md-5">
+  <input id="nWBV" name="nWBV" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nombresv">ASF</label>  
+  <div class="col-md-5">
+  <input id="ASF" name="ASF" type="text"  class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="enviar"></label>
+  <div class="col-md-4">
+    <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+<!-- Form Name dem -->
+
+              <!-- disini maksudnya in active yaitu mengaktifkan file yg ditampilkan untuk pertamakali -->
+              <div class="col-md-12">
+                <form action="/uploaded_dem" method="post" enctype="multipart/form-data">
+                  <div class="form-group files color">
+                    <label>Upload Your File </label>
+                    <input type="file" name="file_dem" id="file_dem">
+                  </div>
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-labeled btn-success pull-right">
+                      <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Enviar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+
+</html>
+
+	  	{% endif %}
+
+
+{% endblock %}

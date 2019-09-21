@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+					<!-- {{ predictions }}
+ -->
+					<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+  
+<h2>Resultados</h2>
+
+
+<table>
+  <tr>
+    <th>Predicción de Demencia</th>
+    <th>Probabilidad</th>
+  </tr>
+   {% for i in range(0,tam) %}
+  <tr>
+    <td>{{ prediccion[i]}}</td>
+    <td>{{ score[i]}}%</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+    <title>Index</title>
+
+<h2>Caracteristicas Importantes</h2>
+
+</br></br>
+<center>
+
+    <img src="https://i.postimg.cc/dtfmkf4T/newplot.png" >
+  </center>
+ 
+</body>
+</html>
+
+
+{% endblock %}
